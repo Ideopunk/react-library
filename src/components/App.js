@@ -9,7 +9,14 @@ function App() {
 
 	const handleAdd = (obj) => {
 		console.log(obj);
-		setBooks([...books, obj]);
+		db.collection("books")
+			.add(obj)
+			.then((docRef) => {
+				console.log(docRef);
+			})
+			.catch((error) => {
+				console.log(`error: ${error}`);
+			});
 	};
 
 	useEffect(() => {
@@ -19,8 +26,12 @@ function App() {
 				if (snap) {
 					let tempArray = [];
 					snap.docs.forEach((doc) => {
-						tempArray.push(doc.data());
-					});
+            console.log(doc.id)
+            let tempObj = doc.data()
+            tempObj.id = doc.id
+						tempArray.push(tempObj);
+          });
+          console.log(tempArray)
 					setBooks(tempArray);
 				} else {
 					console.log("no such collection");
