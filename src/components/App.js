@@ -8,7 +8,6 @@ function App() {
 	const [books, setBooks] = useState([]);
 
 	const handleAdd = (obj) => {
-		console.log(obj);
 		db.collection("books")
 			.add(obj)
 			.then((docRef) => {
@@ -23,27 +22,29 @@ function App() {
 		db.collection("books").doc(id).delete();
 	};
 
-	useEffect(() => {
-		db.collection("books")
-			.get()
-			.then((snap) => {
-				if (snap) {
-					let tempArray = [];
-					snap.docs.forEach((doc) => {
-						console.log(doc.id);
-						let tempObj = doc.data();
-						tempObj.id = doc.id;
-						tempArray.push(tempObj);
-					});
-					console.log(tempArray);
-					setBooks(tempArray);
-				} else {
-					console.log("no such collection");
+	const databaseWhisperer = () => {
+		db.collection("books").onSnapshot((snapshot) => {
+			let changes = snapshot.docChanges();
+			console.log(changes);
+			changes.forEach((change) => {
+				console.log(change.doc.data());
+				let tempObj = change.doc.data();
+				tempObj.id = change.doc.id;
+				if (change.type === "added") {
+					setBooks((books) => [...books, tempObj]);
+				} else if (change.type === "removed") {
+					setBooks((books) =>
+						books.filter((book) => {
+							return book.id !== tempObj.id;
+						})
+					);
 				}
-			})
-			.catch((error) => {
-				console.log(`error getting doc: ${error}`);
 			});
+		});
+	};
+
+	useEffect(() => {
+		databaseWhisperer();
 	}, []);
 
 	return (
