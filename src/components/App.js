@@ -19,14 +19,20 @@ function App() {
 	};
 
 	const handleDelete = (id) => {
-		db.collection("books").doc(id).delete();
-	};
-
-	const handleModify = (id, key, value) => {
 		db.collection("books")
 			.doc(id)
-			.update({
-				[key]: value,
+			.delete()
+			.catch((error) => {
+				console.log(`error: ${error}`);
+			});
+	};
+
+	const handleModify = (id, obj) => {
+		db.collection("books")
+			.doc(id)
+			.set(obj)
+			.catch((error) => {
+				console.log(`error: ${error}`);
 			});
 	};
 
@@ -40,6 +46,8 @@ function App() {
 				tempObj.id = change.doc.id;
 				if (change.type === "added") {
 					setBooks((books) => [...books, tempObj]);
+				} else if (change.type === "modified") {
+					console.log(change, change.doc.data()); // just gonna check out this here new thing...
 				} else if (change.type === "removed") {
 					setBooks((books) =>
 						books.filter((book) => {
@@ -58,7 +66,7 @@ function App() {
 	return (
 		<div className="App">
 			<Form handleAdd={handleAdd} />
-			<Table handleDelete={handleDelete} books={books} />
+			<Table handleModify={handleModify} handleDelete={handleDelete} books={books} />
 		</div>
 	);
 }
