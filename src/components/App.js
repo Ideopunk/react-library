@@ -22,6 +22,14 @@ function App() {
 		db.collection("books").doc(id).delete();
 	};
 
+	const handleModify = (id, key, value) => {
+		db.collection("books")
+			.doc(id)
+			.update({
+				[key]: value,
+			});
+	};
+
 	const databaseWhisperer = () => {
 		db.collection("books").onSnapshot((snapshot) => {
 			let changes = snapshot.docChanges();
