@@ -8,6 +8,7 @@ const Table = (props) => {
 				<div>{book.author}</div>
 				<div>{book.pages}</div>
 				<div>{book.read}</div>
+                <div onClick={() => props.handleDelete(book.id)}>x</div>
 			</div>
 		);
 	});

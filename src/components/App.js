@@ -19,6 +19,10 @@ function App() {
 			});
 	};
 
+	const handleDelete = (id) => {
+		db.collection("books").doc(id).delete();
+	};
+
 	useEffect(() => {
 		db.collection("books")
 			.get()
@@ -26,12 +30,12 @@ function App() {
 				if (snap) {
 					let tempArray = [];
 					snap.docs.forEach((doc) => {
-            console.log(doc.id)
-            let tempObj = doc.data()
-            tempObj.id = doc.id
+						console.log(doc.id);
+						let tempObj = doc.data();
+						tempObj.id = doc.id;
 						tempArray.push(tempObj);
-          });
-          console.log(tempArray)
+					});
+					console.log(tempArray);
 					setBooks(tempArray);
 				} else {
 					console.log("no such collection");
@@ -45,7 +49,7 @@ function App() {
 	return (
 		<div className="App">
 			<Form handleAdd={handleAdd} />
-			<Table books={books} />
+			<Table handleDelete={handleDelete} books={books} />
 		</div>
 	);
 }
