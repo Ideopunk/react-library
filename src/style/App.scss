@@ -1,4 +1,6 @@
 @import "reset";
+@import "Form";
+@import "Table";
 
 body {
     height: 100vh;
@@ -25,79 +27,7 @@ body {
     border-bottom-left-radius: 2px;
 }
 
-.form-container {
-    padding: 1rem;
-    border-bottom: 2px solid black;
-}
 
-.form {
-    display: flex;
-    flex-wrap: wrap;
-    column-gap: 2rem;
-}
 
-.form > * {
-    min-width: 40%;
-    flex: 1;
-}
 
-label {
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-}
 
-input {
-    margin-top: 0.5rem;
-    border: 2px solid black;
-    box-sizing: border-box;
-    font-size: 1.5rem;
-    border-top-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-    border-top-right-radius: 2px;
-    border-bottom-left-radius: 2px;
-    outline: 0;
-    padding-left: 0.75rem;
-    transition: border-color linear 0.1s;
-}
-
-input:focus {
-    border-color: rgb(255, 79, 109);
-}
-
-.submit {
-    background-color: rgb(255, 212, 219);
-    border-color: rgb(255, 79, 109);
-    transition: background-color linear 0.05s;
-}
-
-.submit:hover {
-    background-color: rgb(255, 121, 143);
-
-}
-
-.submit:active {
-    background-color: rgb(255, 79, 108);
-}
-
-input[type="checkbox"] {
-    height: 1.5rem;
-    width: 1.5rem;
-}
-
-.table {
-    padding: 1rem;
-}
-
-.row {
-    padding-top: 1rem;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.row > * {
-    flex: 1;
-    min-width: 50%;
-}
