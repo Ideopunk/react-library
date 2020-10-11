@@ -13,9 +13,11 @@ const Table = (props) => {
 		);
 	});
 	return (
-		<div className="table">
+		<div className="table-container">
 			<h1>Table</h1>
-            {booksTable}
+			<div className="table">
+            	{booksTable}
+			</div>
 		</div>
 	);
 };

@@ -1,4 +1,4 @@
-.table {
+.table-container {
     padding: 1rem;
 }
 
@@ -8,6 +8,10 @@
     flex-wrap: wrap;
 }
 
+.row:nth-child(odd) {
+    background-color: rgb(250, 166, 166);
+}
+
 .row > * {
     flex: 1;
     min-width: 50%;
@@ -15,4 +19,8 @@
 
 .delete-button {
     border: 2px solid black;
+}
+
+.delete-button:active {
+    background-color: black;
 }
