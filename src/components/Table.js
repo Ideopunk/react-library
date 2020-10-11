@@ -13,7 +13,7 @@ const Table = (props) => {
 		);
 	});
 	return (
-		<div>
+		<div className="table">
 			<h1>Table</h1>
             {booksTable}
 		</div>

@@ -1,1 +1,84 @@
 @import "reset";
+
+body {
+    height: 100vh;
+    background: linear-gradient(to top, rgb(240, 163, 163), rgb(255, 218, 218));
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    font-size: 1.5rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#root {
+    border: 3px solid black;
+    background-color: white;
+    width: 50%;
+    min-width: 250px;
+    box-sizing: border-box;
+    border-top-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+
+.form-container {
+    padding: 1rem;
+    border-bottom: 2px solid black;
+}
+
+.form {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 2rem;
+}
+
+.form > * {
+    min-width: 40%;
+    flex: 1;
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+input {
+    border: 2px solid black;
+    font-size: 1.5rem;
+    border-top-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+
+input[type="submit"] {
+    background-color: rgb(255, 212, 219);
+}
+
+input[type="checkbox"] {
+    height: 1.5rem;
+    width: 1.5rem;
+
+}
+
+.table {
+    padding: 1rem;
+}
+
+.row {
+    padding-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.row > * {
+    flex: 1;
+    min-width: 50%;
+}
