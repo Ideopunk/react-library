@@ -48,7 +48,7 @@ const Form = (props) => {
 					<input type="checkbox" name="read" value={form.read} onChange={handleChange} />
 				</label>
 
-				<input type="submit" value="Submit"/>
+				<input type="submit" className="submit" value="Submit"/>
 			</form>
 		</div>
 	);
