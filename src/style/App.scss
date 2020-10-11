@@ -1,3 +1,5 @@
+$trans-time: 0.1s;
+
 @import "reset";
 @import "Form";
 @import "Table";
@@ -13,7 +15,6 @@ body {
 	width: 100vw;
 	font-size: 1.5rem;
     font-family: "Montserrat", sans-serif;
-    color: rgb(45, 65, 65);
 }
 
 #root {

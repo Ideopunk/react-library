@@ -25,7 +25,9 @@ label {
 
 input {
     margin-top: 0.5rem;
-    border: 2px solid rgb(45, 65, 65);;
+    border-width: 2px;
+    border-style: solid;
+    border-color: black;
     box-sizing: border-box;
     font-size: 1.5rem;
     border-top-left-radius: 15px;
@@ -34,19 +36,22 @@ input {
     border-bottom-left-radius: 2px;
     outline: 0;
     padding-left: 0.75rem;
-    transition: border-color linear 0.1s;
-    color: rgb(45, 65, 65);
+    transition: all linear $trans-time;
+}
 
+input:hover {
+    background-color: rgba(173, 216, 230, 0.25);
 }
 
 input:focus {
     border-color: rgb(255, 79, 109);
+    background-color: rgba(173, 216, 230, 0.5);
 }
 
 .submit {
     background-color: rgb(255, 212, 219);
     border-color: rgb(255, 79, 109);
-    transition: background-color linear 0.05s;
+    transition: background-color linear ($trans-time / 10);
 }
 
 .submit:hover {
