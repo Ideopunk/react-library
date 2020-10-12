@@ -1,6 +1,23 @@
 .table-container {
-    // overflow-y: scroll;
+    overflow-y: scroll;
+    max-height: 450px;
+
+    // firefox
+    scrollbar-width: thin;
+    scrollbar-color: pink transparent;
 }
+
+/* Works on Chrome/Edge/Safari */
+.table-container::-webkit-scrollbar {
+    width: 5px;
+  }
+  .table-container::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .table-container::-webkit-scrollbar-thumb {
+    background-color: pink;
+    border-radius: 20px;
+  }
 
 .table-title {
     padding: 1rem;

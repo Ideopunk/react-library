@@ -30,10 +30,10 @@ input {
 	border-color: black;
 	box-sizing: border-box;
 	font-size: 1.5rem;
-	border-top-left-radius: 15px;
-	border-bottom-right-radius: 15px;
-	border-top-right-radius: 2px;
-	border-bottom-left-radius: 2px;
+	border-top-left-radius: 2px;
+	border-bottom-right-radius: 2px;
+	border-top-right-radius: 15px;
+	border-bottom-left-radius: 15px;
 	outline: 0;
 	padding-left: 0.75rem;
 	transition: all linear $trans-time;

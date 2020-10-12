@@ -66,7 +66,7 @@ const Form = (props) => {
 
 	return (
 		<div name={props.cn} className={props.cn}>
-			<h1>Form</h1>
+			<h1>{props.type === "top" ? "Add a book" : "Update book"}</h1>
 			<form className="form" onSubmit={props.type === "top" ? handleSubmit : handleEdit}>
 				<label>
 					Title
