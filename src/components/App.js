@@ -75,7 +75,7 @@ function App() {
 		<div className="App">
 			<TopForm handleAdd={handleAdd} />
 			<Table initiateModify={initiateModify} handleDelete={handleDelete} books={books} />
-			{modifier? <Modifier book={modifier} /> : ""}
+			{modifier? <Modifier handleModify={handleModify} book={modifier} /> : ""}
 		</div>
 	);
 }

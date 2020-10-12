@@ -4,7 +4,7 @@ import ToggleSwitch from "./ToggleSwitch";
 const TopForm = (props) => {
 	const initialState = { title: "", author: "", pages: 0, read: false }
 	return (
-		<Form type="top" initialState={initialState} cn="form-container"/>
+		<Form type="top" handleAdd={props.handleAdd} initialState={initialState} cn="form-container"/>
 	)
 }
 
@@ -12,7 +12,7 @@ const Modifier = (props) => {
 	const initialState = { title: props.book.title, author: props.book.author, pages: props.book.pages, read: props.book.read}
 	console.log(initialState)
 	return (
-		<Form id={props.book.id} type="modifier" initialState={initialState} cn="modifier"/>
+		<Form id={props.book.id} handleModify={props.handleModify} type="modifier" initialState={initialState} cn="modifier"/>
 	)
 }
 
@@ -39,7 +39,7 @@ const Form = (props) => {
 	const handleEdit = (e) => {
 		e.preventDefault()
 		console.log(e.target)
-		props.handleModify(form, props.id)
+		props.handleModify(props.id, form)
 	}
 
 	return (
@@ -70,7 +70,6 @@ const Form = (props) => {
 					Read
 					<input type="checkbox" name="read" value={form.read} onChange={handleChange} />
 				</label>
-				{/* <ToggleSwitch name="read" /> */}
 
 				<input type="submit" className="submit" value={props.type === "top"? "Submit" : "Update"}/>
 			</form>
