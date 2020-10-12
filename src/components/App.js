@@ -3,10 +3,13 @@ import "../style/App.scss";
 import db from "../config/fbConfig";
 import { TopForm, Modifier } from "./Form";
 import Table from "./Table";
+import Loader from "react-loader-spinner";
+// import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 function App() {
 	const [books, setBooks] = useState([]);
 	const [modifier, setModifier] = useState(false);
+	const [loading, setLoading] = useState(true);
 
 	const handleAdd = (obj) => {
 		db.collection("books")
@@ -34,7 +37,7 @@ function App() {
 	};
 
 	const handleModify = (id, obj) => {
-		console.log("handleModify")
+		console.log("handleModify");
 		db.collection("books")
 			.doc(id)
 			.set(obj)
@@ -78,6 +81,7 @@ function App() {
 					);
 				}
 			});
+			setLoading(false);
 		});
 	};
 
@@ -88,7 +92,19 @@ function App() {
 	return (
 		<div className="App">
 			<TopForm handleAdd={handleAdd} />
-			<Table initiateModify={initiateModify} handleDelete={handleDelete} books={books} />
+			{!loading ? (
+				<Table initiateModify={initiateModify} handleDelete={handleDelete} books={books} />
+			) : (
+				<div className="center">
+					<Loader
+						type="TailSpin"
+						color="pink"
+						height={100}
+						width={100}
+						timeout={3000} //3 secs
+					/>
+				</div>
+			)}
 			{modifier ? (
 				<Modifier closeModify={closeModify} handleModify={handleModify} book={modifier} />
 			) : (
