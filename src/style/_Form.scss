@@ -1,3 +1,5 @@
+
+
 .form-container {
 	padding: 1rem;
 	border-bottom: 2px solid black;
@@ -63,6 +65,8 @@ input:focus {
 }
 
 input[type="checkbox"] {
+	// position: absolute;
+  	// left: -9999px;
 	height: 1.5rem;
 	width: 1.5rem;
 }

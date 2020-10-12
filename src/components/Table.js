@@ -16,7 +16,7 @@ const Table = (props) => {
 					alt="edit"
 				/>
 				<div>{book.pages} pages</div>
-				<div>{book.read}</div>
+				<div>{book.read ? "I've read this!" : `I haven't read this yet!`}</div>
 				<img
 					src={trash}
 					className="delete-button row-button"

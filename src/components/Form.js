@@ -45,7 +45,10 @@ const Form = (props) => {
 	const [form, setForm] = useState(props.initialState);
 
 	const handleChange = (e) => {
-		let { name, value } = e.target;
+		const target = e.target;
+		const name = target.name;
+		let value = target.type === "checkbox" ? target.checked : target.value;
+		console.log(name, value);
 		if (name === "read") {
 			value = Boolean(value);
 		}
@@ -88,11 +91,29 @@ const Form = (props) => {
 						onChange={handleChange}
 					/>
 				</label>
-				<label>
+				{/* <label>
 					Read
 					<input type="checkbox" name="read" value={form.read} onChange={handleChange} />
-				</label>
+				</label> */}
 
+				<div className="toggle-wrapper">
+					<div className="toggle normal">
+						<input
+							id={props.type === "top" ? "top-read" : "edit-read"}
+							type="checkbox"
+							name="read"
+							value={form.read}
+							onChange={handleChange}
+						/>
+						<label
+							className="toggle-item"
+							name="read"
+							htmlFor={props.type === "top" ? "top-read" : "edit-read"}
+							s
+						></label>
+					</div>
+					<div className="name">Read</div>
+				</div>
 				<input
 					type="submit"
 					className="submit"
