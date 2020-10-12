@@ -34,6 +34,7 @@ function App() {
 	};
 
 	const handleModify = (id, obj) => {
+		console.log("handleModify")
 		db.collection("books")
 			.doc(id)
 			.set(obj)

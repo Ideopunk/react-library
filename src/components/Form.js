@@ -59,7 +59,9 @@ const Form = (props) => {
 	};
 
 	const handleEdit = (e) => {
+		e.stopPropagation();
 		e.preventDefault();
+		props.handleModify(props.id, form);
 	};
 
 	return (
@@ -95,6 +97,7 @@ const Form = (props) => {
 					type="submit"
 					className="submit"
 					value={props.type === "top" ? "Submit" : "Update"}
+					onClick={props.type === "top" ? handleSubmit : handleEdit}
 				/>
 			</form>
 		</div>
