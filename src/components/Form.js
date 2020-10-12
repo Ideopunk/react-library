@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ToggleSwitch from "./ToggleSwitch";
+// import ToggleSwitch from "./ToggleSwitch";
 
 const TopForm = (props) => {
 	const initialState = { title: "", author: "", pages: 0, read: false }
@@ -10,9 +10,15 @@ const TopForm = (props) => {
 
 const Modifier = (props) => {
 	const initialState = { title: props.book.title, author: props.book.author, pages: props.book.pages, read: props.book.read}
-	console.log(initialState)
+
+	const closeModal = () => {
+		props.closeModify()
+	}
+
 	return (
-		<Form id={props.book.id} handleModify={props.handleModify} type="modifier" initialState={initialState} cn="modifier"/>
+		<div className="cover" onClick={(e) => e.target.value === "cover"? closeModal : ""}>
+			<Form id={props.book.id} handleModify={props.handleModify} type="modifier" initialState={initialState} cn="modifier"/>
+		</div>
 	)
 }
 
@@ -43,7 +49,7 @@ const Form = (props) => {
 	}
 
 	return (
-		<div className={props.cn}>
+		<div name={props.cn} className={props.cn}>
 			<h1>Form</h1>
 			<form className="form" onSubmit={props.type === "top"? handleSubmit : handleEdit}>
 				<label>

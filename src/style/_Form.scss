@@ -68,12 +68,22 @@ input[type="checkbox"] {
     width: 1.5rem;
 }
 
-.modifier {
+.cover {
     position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+}
+
+.modifier {
+    position: relative;
     width: 60%;
     left: 20%;
     top: 30%;
     background-color: white;
+    opacity: 1;
     z-index: 1;
     padding: 1rem;
     box-sizing: border-box;

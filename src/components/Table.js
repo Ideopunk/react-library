@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import edit from "../assets/create-outline.svg";
 import trash from "../assets/trash-outline.svg";
-import ToggleSwitch from "./ToggleSwitch";
+// import ToggleSwitch from "./ToggleSwitch";
 
 const Table = (props) => {
 
