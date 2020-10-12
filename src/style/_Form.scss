@@ -1,91 +1,94 @@
 .form-container {
-    padding: 1rem;
-    border-bottom: 2px solid black;
-    box-sizing: border-box;
+	padding: 1rem;
+	border-bottom: 2px solid black;
+	box-sizing: border-box;
 }
 
 .form {
-    display: flex;
-    flex-wrap: wrap;
-    column-gap: 2rem;
+	display: flex;
+	flex-wrap: wrap;
+	column-gap: 2rem;
 }
 
 .form > * {
-    min-width: 40%;
-    flex: 1;
+	min-width: 40%;
+	flex: 1;
 }
 
 label {
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+	display: flex;
+	flex-direction: column;
+	box-sizing: border-box;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
 }
 
 input {
-    margin-top: 0.5rem;
-    border-width: 2px;
-    border-style: solid;
-    border-color: black;
-    box-sizing: border-box;
-    font-size: 1.5rem;
-    border-top-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-    border-top-right-radius: 2px;
-    border-bottom-left-radius: 2px;
-    outline: 0;
-    padding-left: 0.75rem;
-    transition: all linear $trans-time;
+	margin-top: 0.5rem;
+	border-width: 2px;
+	border-style: solid;
+	border-color: black;
+	box-sizing: border-box;
+	font-size: 1.5rem;
+	border-top-left-radius: 15px;
+	border-bottom-right-radius: 15px;
+	border-top-right-radius: 2px;
+	border-bottom-left-radius: 2px;
+	outline: 0;
+	padding-left: 0.75rem;
+	transition: all linear $trans-time;
 }
 
 input:hover {
-    background-color: rgba(173, 216, 230, 0.25);
+	background-color: rgba(173, 216, 230, 0.25);
 }
 
 input:focus {
-    border-color: rgb(255, 79, 109);
-    background-color: rgba(155, 218, 218, 0.5);
+	border-color: rgb(255, 79, 109);
+	background-color: rgba(155, 218, 218, 0.5);
 }
 
 .submit {
-    background-color: rgb(255, 212, 219);
-    border-color: rgb(255, 79, 109);
-    transition: background-color linear $trans-time;
+	background-color: rgb(255, 212, 219);
+	border-color: rgb(255, 79, 109);
+	transition: background-color linear $trans-time;
 }
 
 .submit:hover {
-    background-color: rgb(255, 121, 143);
-
+	background-color: rgb(255, 121, 143);
 }
 
 .submit:active {
-    background-color: rgb(255, 79, 108);
+	background-color: rgb(255, 79, 108);
 }
 
 input[type="checkbox"] {
-    height: 1.5rem;
-    width: 1.5rem;
+	height: 1.5rem;
+	width: 1.5rem;
 }
 
 .cover {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: white;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(255, 255, 255, 0.5);
 }
 
 .modifier {
-    position: relative;
-    width: 60%;
-    left: 20%;
-    top: 30%;
-    background-color: white;
-    opacity: 1;
-    z-index: 1;
-    padding: 1rem;
-    box-sizing: border-box;
-    border-radius: 15px;
+	position: relative;
+	width: 60%;
+	left: 20%;
+	top: 30%;
+	background-color: white;
+	opacity: 1;
+	z-index: 1;
+	padding: 1rem;
+	box-sizing: border-box;
+    border-top-left-radius: 15px;
+	border-bottom-right-radius: 15px;
+	border-top-right-radius: 2px;
+	border-bottom-left-radius: 2px;
+    border: 3px solid black;
 }
