@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "../style/App.scss";
 import db from "../config/fbConfig";
-import Form from "./Form";
+import {Form, TopForm, Modifier} from "./Form";
 import Table from "./Table";
 
 function App() {
 	const [books, setBooks] = useState([]);	
+	const [modifier, setModifier] = useState(false)
 
 	const handleAdd = (obj) => {
 		db.collection("books")
@@ -27,6 +28,11 @@ function App() {
 			});
 	};
 
+	const initiateModify = (book) => {
+		console.log(book)
+		setModifier(book)
+	}
+
 	const handleModify = (id, obj) => {
 		db.collection("books")
 			.doc(id)
@@ -34,6 +40,8 @@ function App() {
 			.catch((error) => {
 				console.log(`error: ${error}`);
 			});
+
+		setModifier(false)
 	};
 
 	const databaseWhisperer = () => {
@@ -65,8 +73,9 @@ function App() {
 
 	return (
 		<div className="App">
-			<Form handleAdd={handleAdd} />
-			<Table handleModify={handleModify} handleDelete={handleDelete} books={books} />
+			<TopForm handleAdd={handleAdd} />
+			<Table initiateModify={initiateModify} handleDelete={handleDelete} books={books} />
+			{modifier? <Modifier book={modifier} /> : ""}
 		</div>
 	);
 }

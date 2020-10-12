@@ -67,3 +67,15 @@ input[type="checkbox"] {
     height: 1.5rem;
     width: 1.5rem;
 }
+
+.modifier {
+    position: absolute;
+    width: 60%;
+    left: 20%;
+    top: 30%;
+    background-color: white;
+    z-index: 1;
+    padding: 1rem;
+    box-sizing: border-box;
+    border-radius: 15px;
+}

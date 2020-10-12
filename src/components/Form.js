@@ -1,8 +1,23 @@
 import React, { useState } from "react";
 import ToggleSwitch from "./ToggleSwitch";
 
+const TopForm = (props) => {
+	const initialState = { title: "", author: "", pages: 0, read: false }
+	return (
+		<Form type="top" initialState={initialState} cn="form-container"/>
+	)
+}
+
+const Modifier = (props) => {
+	const initialState = { title: props.book.title, author: props.book.author, pages: props.book.pages, read: props.book.read}
+	console.log(initialState)
+	return (
+		<Form id={props.book.id} type="modifier" initialState={initialState} cn="modifier"/>
+	)
+}
+
 const Form = (props) => {
-	const [form, setForm] = useState({ title: "", author: "", pages: 0, read: false });
+	const [form, setForm] = useState(props.initialState);
 
 	const handleChange = (e) => {
 		console.log(e.target)
@@ -21,10 +36,16 @@ const Form = (props) => {
 		setForm({ title: "", author: "", pages: 0, read: false })
 	};
 
+	const handleEdit = (e) => {
+		e.preventDefault()
+		console.log(e.target)
+		props.handleModify(form, props.id)
+	}
+
 	return (
-		<div className="form-container">
+		<div className={props.cn}>
 			<h1>Form</h1>
-			<form className="form" onSubmit={handleSubmit}>
+			<form className="form" onSubmit={props.type === "top"? handleSubmit : handleEdit}>
 				<label>
 					Title
 					<input type="text" name="title" value={form.title} onChange={handleChange} />
@@ -51,10 +72,10 @@ const Form = (props) => {
 				</label>
 				{/* <ToggleSwitch name="read" /> */}
 
-				<input type="submit" className="submit" value="Submit"/>
+				<input type="submit" className="submit" value={props.type === "top"? "Submit" : "Update"}/>
 			</form>
 		</div>
 	);
 };
 
-export default Form;
+export { Form, TopForm, Modifier};
