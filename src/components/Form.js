@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ToggleSwitch from "./ToggleSwitch";
 
 const Form = (props) => {
 	const [form, setForm] = useState({ title: "", author: "", pages: 0, read: false });
@@ -16,7 +17,8 @@ const Form = (props) => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
         console.log(e.target);
-        props.handleAdd(form)
+		props.handleAdd(form);
+		setForm({ title: "", author: "", pages: 0, read: false })
 	};
 
 	return (
@@ -47,6 +49,7 @@ const Form = (props) => {
 					Read
 					<input type="checkbox" name="read" value={form.read} onChange={handleChange} />
 				</label>
+				{/* <ToggleSwitch name="read" /> */}
 
 				<input type="submit" className="submit" value="Submit"/>
 			</form>
