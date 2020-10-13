@@ -67,6 +67,7 @@ const Menu = (props) => {
 	} else {
 		logUl = (
 			<ul className="menu">
+                {props.error? <li className="error-message">Login failed. Check your spelling or something??</li> : ""}
 				<li onClick={toggleLogin}>Login</li>
 				<li onClick={toggleSignUp}>Sign up</li>
 			</ul>

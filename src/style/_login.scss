@@ -10,13 +10,14 @@
 }
 
 .menu {
-    height: 300px;
+    // height: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 25%;
-    font-size: 5rem;
+    gap: 2rem;
+    font-size: 3rem;
+    padding: 1rem;
 }
 
 .menu > * {
@@ -42,4 +43,10 @@
 
 .sign-up-menu > *:last-child {
     margin-top: 1.5rem;
+}
+
+.error-message {
+    font-size: 1rem;
+    color: red;
+    text-align: center;
 }

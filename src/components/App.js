@@ -12,6 +12,7 @@ function App() {
 	const [loadingDB, setLoadingDB] = useState(true); // Hmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
 	const [loadingUser, setLoadingUser] = useState(false);
 	const [login, setLogin] = useState(false);
+	const [error, setError] = useState(false);
 
 	const handleSignUp = (email, password) => {
 		setLoadingUser(true);
@@ -31,12 +32,18 @@ function App() {
 
 	const handleLogin = (email, password) => {
 		setLoadingUser(true);
-		auth.signInWithEmailAndPassword(email, password).then((cred) => {
-			console.log("log-in");
-			console.log(cred.user);
-			setLogin(true);
-			setLoadingUser(false);
-		});
+		auth.signInWithEmailAndPassword(email, password)
+			.then((cred) => {
+				console.log("log-in");
+				console.log(cred.user);
+				setLogin(true);
+				setLoadingUser(false);
+			})
+			.catch((errorMessage) => {
+				setLoadingUser(false);
+				setError(true);
+				console.log(errorMessage);
+			});
 	};
 
 	const handleAdd = (obj) => {
@@ -84,11 +91,11 @@ function App() {
 	const userWhisperer = () => {
 		auth.onAuthStateChanged((user) => {
 			if (user) {
-				console.log('user logged in', user)
-				setLogin(true)
+				console.log("user logged in", user);
+				setLogin(true);
 			} else {
-				console.log('user logged out')
-				setLogin(false)
+				console.log("user logged out");
+				setLogin(false);
 			}
 		});
 	};
@@ -168,6 +175,7 @@ function App() {
 					handleLogin={handleLogin}
 					handleSignUp={handleSignUp}
 					login={login}
+					error={error}
 				/>
 			</div>
 		);
