@@ -19,6 +19,12 @@
 	border-radius: 20px;
 }
 
+@media (max-width: 767px) {
+	.table-container {
+		max-height: 350px;
+	}
+}
+
 .table-title {
 	padding: 1rem;
 }
@@ -45,17 +51,19 @@
 	gap: 1rem;
 }
 
-@media (max-width: 767px) {
-	.row-data {
-        font-size: 0.8rem;
-		column-gap: 1.5rem;
-	}
-}
-
 .row-data > * {
 	margin-bottom: 1rem;
 	flex: 1;
 	min-width: 40%;
+}
+
+@media (max-width: 767px) {
+	.row-data {
+		font-size: 0.8rem;
+		column-gap: 1.5rem;
+		padding-bottom: 0.5rem;
+	}
+
 }
 
 .row-buttons {

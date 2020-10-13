@@ -50,7 +50,6 @@
 // width and height of backdrop
 label.toggle-item {
 	width: 5rem;
-	background: #2e394d;
 	height: 2rem;
 	display: inline-block;
 	border-radius: 50px;
@@ -75,7 +74,7 @@ label.toggle-item {
 // Uhh also width and height of circle.
 .normal {
 	label {
-		background: #e77e7e;
+		background: rgb(255, 189, 200);
 		&:before {
 			width: 1.45rem;
 			height: 1.45rem;
@@ -94,21 +93,31 @@ label.toggle-item {
 	}
 }
 
+.normal {
+	label:hover {
+		background: rgb(255, 121, 143);
+	}
+}
+
 // How far right does it move? 
 #top-read:checked + label {
-	background: rgb(83, 192, 255);
+	background: rgb(155, 218, 218);
 	&:before {
         left: 3.25rem;
 	}
 }
 
 #edit-read:checked + label {
-	background: rgb(83, 192, 255);
+	background: rgb(155, 218, 218);
 	&:before {
         left: 3.25rem;
 	}
 }
 
-@media (max-width: 767px) {
+#top-read:checked + label:hover {
+	background: darken(rgb(155, 218, 218), 10%);
+}
 
+#edit-read:checked + label:hover {
+	background: darken(rgb(155, 218, 218), 10%);
 }

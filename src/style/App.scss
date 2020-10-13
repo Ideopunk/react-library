@@ -41,6 +41,16 @@ body {
 	mask-image: radial-gradient(white, black);
 }
 
+@media (max-width: 1023px) {
+	body {
+		font-size: 1.25rem;
+	}
+
+	#root {
+		width: 80%;
+	}
+}
+
 @media (max-width: 767px) {
 	body {
 		font-size: 1rem;
