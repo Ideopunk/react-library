@@ -17,7 +17,7 @@ body {
 	width: 100vw;
 	font-size: 1.5rem;
 	font-family: "Montserrat", sans-serif;
-	
+	overflow-x: hidden;
 }
 
 #root {
@@ -29,6 +29,7 @@ body {
 }
 
 .App {
+	max-height: 95vh;
 	margin: 1rem;
 	border: 3px solid black;
 	background-color: white;
@@ -40,10 +41,11 @@ body {
 	border-top-right-radius: 25px;
 	border-bottom-left-radius: 25px;
 	box-shadow: 5px 5px 4px #7c6d6d;
-	// overflow: hidden;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
 
-	// fix row border-top overflowing on iOS. 
-
+	// fix row border-top overflowing on iOS.
 }
 
 @media (max-width: 1023px) {

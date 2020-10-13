@@ -1,12 +1,13 @@
 .table-container {
 	overflow-y: scroll;
 	max-height: 450px;
-
+	// height: 100vh;
+	flex: 1;
 	// firefox
 	scrollbar-width: thin;
 	scrollbar-color: pink transparent;
 	-webkit-mask-image: -webkit-radial-gradient(white, black);
-			mask-image: radial-gradient(white, black);
+	mask-image: radial-gradient(white, black);
 }
 
 /* Works on Chrome/Edge/Safari */
@@ -65,7 +66,6 @@
 		column-gap: 1.5rem;
 		padding-bottom: 0.5rem;
 	}
-
 }
 
 .row-buttons {

@@ -10,7 +10,7 @@ function App() {
 	const [books, setBooks] = useState([]);
 	const [modifier, setModifier] = useState(false);
 	const [loading, setLoading] = useState(true);
-	const [login, setLogin] = useState(false);
+	const [login, setLogin] = useState(true);
 
 	const handleAdd = (obj) => {
 		db.collection("books")
