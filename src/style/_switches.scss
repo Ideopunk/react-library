@@ -28,12 +28,10 @@
 	position: relative;
 }
 
+// the actual label
 .name {
-	width: 80%;
-	position: absolute;
-	bottom: 15px;
-	right: 15px;
-	text-align: right;
+	width: 30%;
+	text-align: left;
 }
 
 .toggle {
@@ -41,37 +39,38 @@
 	display: inline-block;
 }
 
+// width and height of backdrop
 label.toggle-item {
-	width: 7rem;
+	width: 5rem;
 	background: #2e394d;
-	height: 2em;
+	height: 2rem;
 	display: inline-block;
 	border-radius: 50px;
 	margin: 40px;
 	position: relative;
 	transition: all 0.3s ease;
 	transform-origin: 20% center;
-	cursor: pointer;
+    cursor: pointer;
+    // width and height of circle
 	&:before {
 		display: block;
 		transition: all 0.2s ease;
-		width: 2.3em;
-		height: 1.5em;
-		top: 0.25em;
+		width: 90%;
+		height: 90%;
+        top: 15%;
 		left: 0.25em;
 		border-radius: 2em;
-		border: 2px solid #88cf8f;
 		transition: 0.3s ease;
 	}
 }
 
+// Uhh also width and height of circle.
 .normal {
 	label {
 		background: #e77e7e;
 		&:before {
-			border: none;
-			width: 1.45em;
-			height: 1.5em;
+			width: 1.45rem;
+			height: 1.45rem;
 			background: #fff;
 			transform: rotate(-25deg);
 		}
@@ -87,16 +86,17 @@ label.toggle-item {
 	}
 }
 
+// How far right does it move? 
 #top-read:checked + label {
 	background: rgb(83, 192, 255);
 	&:before {
-        left: 70px;
+        left: 3.25rem;
 	}
 }
 
 #edit-read:checked + label {
 	background: rgb(83, 192, 255);
 	&:before {
-        left: 70px;
+        left: 3.25rem;
 	}
 }
