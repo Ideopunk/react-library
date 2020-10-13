@@ -5,6 +5,8 @@
 	// firefox
 	scrollbar-width: thin;
 	scrollbar-color: pink transparent;
+	-webkit-mask-image: -webkit-radial-gradient(white, black);
+			mask-image: radial-gradient(white, black);
 }
 
 /* Works on Chrome/Edge/Safari */

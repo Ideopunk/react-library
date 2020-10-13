@@ -1,0 +1,45 @@
+.profile-button {
+    position: fixed;
+    right: 3rem;
+    top: 2rem;
+    border-radius: 50%;
+    width: 4rem;
+    z-index: 2;
+    fill: orangered;
+    // border: 3px solid black;
+}
+
+.menu {
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 25%;
+    font-size: 5rem;
+}
+
+.menu > * {
+    transition: color linear 0.1s;
+}
+
+.menu > *:hover {
+    color: orangered;
+}
+
+.sign-up-menu {
+    border-top: 2px solid black;
+    padding: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.sign-up-menu > * {
+    width: 50%;
+}
+
+.sign-up-menu > *:last-child {
+    margin-top: 1.5rem;
+}

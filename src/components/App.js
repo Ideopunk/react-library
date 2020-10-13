@@ -4,11 +4,13 @@ import db from "../config/fbConfig";
 import { TopForm, Modifier } from "./Form";
 import Table from "./Table";
 import Loader from "react-loader-spinner";
+import { Profile, Menu } from "./Login";
 
 function App() {
 	const [books, setBooks] = useState([]);
 	const [modifier, setModifier] = useState(false);
 	const [loading, setLoading] = useState(true);
+	const [login, setLogin] = useState(false);
 
 	const handleAdd = (obj) => {
 		db.collection("books")
@@ -88,29 +90,46 @@ function App() {
 		databaseWhisperer();
 	}, []);
 
-	return (
-		<div className="App">
-			<TopForm handleAdd={handleAdd} />
-			{!loading ? (
-				<Table initiateModify={initiateModify} handleDelete={handleDelete} books={books} />
-			) : (
-				<div className="center">
-					<Loader
-						type="TailSpin"
-						color="pink"
-						height={100}
-						width={100}
-						timeout={3000} //3 secs
+	if (login) {
+		return (
+			<div className="App">
+				<Profile />
+				<TopForm handleAdd={handleAdd} />
+				{!loading ? (
+					<Table
+						initiateModify={initiateModify}
+						handleDelete={handleDelete}
+						books={books}
 					/>
-				</div>
-			)}
-			{modifier ? (
-				<Modifier closeModify={closeModify} handleModify={handleModify} book={modifier} />
-			) : (
-				""
-			)}
-		</div>
-	);
+				) : (
+					<div className="center">
+						<Loader
+							type="TailSpin"
+							color="pink"
+							height={100}
+							width={100}
+							timeout={3000} //3 secs
+						/>
+					</div>
+				)}
+				{modifier ? (
+					<Modifier
+						closeModify={closeModify}
+						handleModify={handleModify}
+						book={modifier}
+					/>
+				) : (
+					""
+				)}
+			</div>
+		);
+	} else {
+		return (
+			<div className="App">
+				<Menu login={login} />
+			</div>
+		)
+	}
 }
 
 export default App;
