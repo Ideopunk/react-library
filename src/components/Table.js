@@ -1,7 +1,6 @@
 import React from "react";
 import edit from "../assets/create-outline.svg";
 import trash from "../assets/trash-outline.svg";
-// import ToggleSwitch from "./ToggleSwitch";
 
 const Table = (props) => {
 	const booksTable = props.books.map((book) => {

@@ -41,6 +41,7 @@ input {
 	transition: all linear $trans-time;
 }
 
+
 input:hover {
 	background-color: rgba(173, 216, 230, 0.25);
 }
@@ -95,4 +96,21 @@ input[type="checkbox"] {
 	border-top-right-radius: 2px;
 	border-bottom-left-radius: 2px;
     border: 3px solid black;
+}
+
+@media (max-width: 767px) {
+	label {
+		padding-top: 0.25rem;
+		padding-bottom: 0.25rem;
+	}
+
+	input {
+		font-size: 1rem;
+		margin-top: 0.25rem;
+	}
+
+	.modifier {
+		width: 95%;
+		left: 2.5%;
+	}
 }

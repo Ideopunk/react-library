@@ -46,7 +46,7 @@ label.toggle-item {
 	height: 2rem;
 	display: inline-block;
 	border-radius: 50px;
-	margin: 40px;
+	margin: 20px;
 	position: relative;
 	transition: all 0.3s ease;
 	transform-origin: 20% center;
@@ -99,4 +99,8 @@ label.toggle-item {
 	&:before {
         left: 3.25rem;
 	}
+}
+
+@media (max-width: 767px) {
+
 }

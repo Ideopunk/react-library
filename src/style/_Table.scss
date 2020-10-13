@@ -1,5 +1,5 @@
 .table-container {
-	overflow-y: scroll;
+    overflow-y: scroll;
 	max-height: 450px;
 
 	// firefox
@@ -28,7 +28,7 @@
 	padding: 0.5rem;
 	box-sizing: border-box;
 	display: flex;
-	flex-wrap: wrap;
+    flex-wrap: wrap;
 }
 
 .row:nth-child(odd) {
@@ -41,7 +41,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    align-items: start;
+    align-items: flex-start;
     gap: 1rem;
 }
 

@@ -4,7 +4,6 @@ import db from "../config/fbConfig";
 import { TopForm, Modifier } from "./Form";
 import Table from "./Table";
 import Loader from "react-loader-spinner";
-// import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 function App() {
 	const [books, setBooks] = useState([]);
