@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../style/App.scss";
-import db from "../config/fbConfig";
+import { auth, db } from "../config/fbConfig";
 import { TopForm, Modifier } from "./Form";
 import Table from "./Table";
 import Loader from "react-loader-spinner";
@@ -9,8 +9,35 @@ import { Profile, Menu } from "./Login";
 function App() {
 	const [books, setBooks] = useState([]);
 	const [modifier, setModifier] = useState(false);
-	const [loading, setLoading] = useState(true);
-	const [login, setLogin] = useState(true);
+	const [loadingDB, setLoadingDB] = useState(true); // Hmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
+	const [loadingUser, setLoadingUser] = useState(false);
+	const [login, setLogin] = useState(false);
+
+	const handleSignUp = (email, password) => {
+		setLoadingUser(true);
+		console.log("new account");
+		auth.createUserWithEmailAndPassword(email, password).then((cred) => {
+			console.log(cred.user);
+			setLogin(true);
+			setLoadingUser(false);
+		});
+	};
+
+	const handleSignOut = () => {
+		auth.signOut().then(() => {
+			console.log("logged out");
+		});
+	};
+
+	const handleLogin = (email, password) => {
+		setLoadingUser(true);
+		auth.signInWithEmailAndPassword(email, password).then((cred) => {
+			console.log("log-in");
+			console.log(cred.user);
+			setLogin(true);
+			setLoadingUser(false);
+		});
+	};
 
 	const handleAdd = (obj) => {
 		db.collection("books")
@@ -54,12 +81,22 @@ function App() {
 		setModifier(false);
 	};
 
+	const userWhisperer = () => {
+		auth.onAuthStateChanged((user) => {
+			if (user) {
+				console.log('user logged in', user)
+				setLogin(true)
+			} else {
+				console.log('user logged out')
+				setLogin(false)
+			}
+		});
+	};
+
 	const databaseWhisperer = () => {
 		db.collection("books").onSnapshot((snapshot) => {
 			let changes = snapshot.docChanges();
-			console.log(changes);
 			changes.forEach((change) => {
-				console.log(change.doc.data());
 				let tempObj = change.doc.data();
 				tempObj.id = change.doc.id;
 				if (change.type === "added") {
@@ -73,7 +110,6 @@ function App() {
 							return book;
 						})
 					);
-					console.log(change, change.doc.data()); // just gonna check out this here new thing...
 				} else if (change.type === "removed") {
 					setBooks((books) =>
 						books.filter((book) => {
@@ -82,20 +118,21 @@ function App() {
 					);
 				}
 			});
-			setLoading(false);
+			setLoadingDB(false);
 		});
 	};
 
 	useEffect(() => {
+		userWhisperer();
 		databaseWhisperer();
 	}, []);
 
 	if (login) {
 		return (
 			<div className="App">
-				<Profile />
+				<Profile handleSignOut={handleSignOut} />
 				<TopForm handleAdd={handleAdd} />
-				{!loading ? (
+				{!loadingDB ? (
 					<Table
 						initiateModify={initiateModify}
 						handleDelete={handleDelete}
@@ -126,9 +163,14 @@ function App() {
 	} else {
 		return (
 			<div className="App">
-				<Menu login={login} />
+				<Menu
+					loading={loadingUser}
+					handleLogin={handleLogin}
+					handleSignUp={handleSignUp}
+					login={login}
+				/>
 			</div>
-		)
+		);
 	}
 }
 
