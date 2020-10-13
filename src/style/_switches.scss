@@ -34,6 +34,14 @@
 	text-align: left;
 }
 
+@media (max-width: 767px) {
+	.name {
+		margin-left: 1.5rem;
+		margin-right: 0.5rem;
+		width: 15%;
+	}
+}
+
 .toggle {
 	position: relative;
 	display: inline-block;

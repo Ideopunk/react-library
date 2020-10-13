@@ -93,6 +93,7 @@ const Form = (props) => {
 				</label>
 
 				<div className="toggle-wrapper">
+					<div className="name">Read</div>
 					<div className="toggle normal">
 						<input
 							id={props.type === "top" ? "top-read" : "edit-read"}
@@ -108,7 +109,7 @@ const Form = (props) => {
 							htmlFor={props.type === "top" ? "top-read" : "edit-read"}
 						></label>
 					</div>
-					<div className="name">Read</div>
+					
 				</div>
 				<input
 					type="submit"
