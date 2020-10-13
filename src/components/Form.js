@@ -91,10 +91,6 @@ const Form = (props) => {
 						onChange={handleChange}
 					/>
 				</label>
-				{/* <label>
-					Read
-					<input type="checkbox" name="read" value={form.read} onChange={handleChange} />
-				</label> */}
 
 				<div className="toggle-wrapper">
 					<div className="toggle normal">
@@ -103,13 +99,13 @@ const Form = (props) => {
 							type="checkbox"
 							name="read"
 							value={form.read}
+							checked={form.read}
 							onChange={handleChange}
 						/>
 						<label
 							className="toggle-item"
 							name="read"
 							htmlFor={props.type === "top" ? "top-read" : "edit-read"}
-							s
 						></label>
 					</div>
 					<div className="name">Read</div>

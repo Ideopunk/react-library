@@ -1,64 +1,77 @@
 .table-container {
-    overflow-y: scroll;
-    max-height: 450px;
+	overflow-y: scroll;
+	max-height: 450px;
 
-    // firefox
-    scrollbar-width: thin;
-    scrollbar-color: pink transparent;
+	// firefox
+	scrollbar-width: thin;
+	scrollbar-color: pink transparent;
 }
 
 /* Works on Chrome/Edge/Safari */
 .table-container::-webkit-scrollbar {
-    width: 5px;
-  }
-  .table-container::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  .table-container::-webkit-scrollbar-thumb {
-    background-color: pink;
-    border-radius: 20px;
-  }
+	width: 5px;
+}
+.table-container::-webkit-scrollbar-track {
+	background: transparent;
+}
+.table-container::-webkit-scrollbar-thumb {
+	background-color: pink;
+	border-radius: 20px;
+}
 
 .table-title {
-    padding: 1rem;
+	padding: 1rem;
 }
 
 .row {
-    border-top: 1px solid black;
-    padding: 1rem;
-    box-sizing: border-box;
-    padding-top: 1rem;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
+	border-top: 1px solid black;
+	padding: 0.5rem;
+	box-sizing: border-box;
+	display: flex;
+	flex-wrap: wrap;
 }
 
 .row:nth-child(odd) {
-    background-color: rgba(155, 218, 218, 0.25);
-    
+	background-color: rgba(155, 218, 218, 0.25);
 }
 
-.row > * {
+.row-data {
+    padding: 1rem;
     flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: start;
+    gap: 1rem;
+}
+
+.row-data > * {
     margin-bottom: 1rem;
+    flex: 1;
     min-width: 40%;
 }
 
-.row-button {
-    flex: 0;
-    width: 40px;
-    min-width: 40px;
-    max-width: 40px;
-    height: 40px;
+.row-buttons {
     box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 60px;
+}
+
+.row-button {
+	flex: 0;
+	width: 50%;
+	box-sizing: border-box;
     border: 2px solid transparent;
-    transition: border linear 0.1s;
+    border-radius: 5px;
+	transition: border linear 0.1s;
 }
 
 .row-button:hover {
-    border: 2px solid black;
+	border: 2px solid black;
 }
 
 .row-button:active {
-    background-color: black;
+	background-color: pink;
 }
