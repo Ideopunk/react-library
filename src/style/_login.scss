@@ -6,6 +6,9 @@
     top: 2rem;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    column-gap: 0.5rem;
+    line-height: 1.5;
     background-color: white;
     border-radius: 50px;
     border: 2px solid rgba(0, 0, 0, 0.4);
@@ -17,9 +20,20 @@
     background-color: rgba(173, 216, 230, 0.25);
 }
 
-.profile-button {
-    margin-left: 0.5rem;
-    width: 3rem;
+@media (max-width: 767px) {
+    .profile-div {
+        padding: 0;
+        right: 2rem;
+        top: 90%;
+    }
+
+    .profile-div > p {
+        display: none;
+    }
+}
+
+.power-button {
+    width: 1.75rem;
     fill: rgb(230, 80, 80);
 }
 
@@ -28,7 +42,7 @@
 .menu {
     // height: 300px;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     gap: 2rem;
     font-size: 3rem;

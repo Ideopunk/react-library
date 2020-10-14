@@ -1,11 +1,11 @@
 .table-container {
 	overflow-y: scroll;
 	max-height: 450px;
-	// height: 100vh;
 	flex: 1;
+
 	// firefox
 	scrollbar-width: thin;
-	scrollbar-color: pink transparent;
+	scrollbar-color: $sitepeach transparent;
 	-webkit-mask-image: -webkit-radial-gradient(white, black);
 	mask-image: radial-gradient(white, black);
 }
@@ -18,7 +18,7 @@
 	background: transparent;
 }
 .table-container::-webkit-scrollbar-thumb {
-	background-color: pink;
+	background-color: $sitepeach;
 	border-radius: 20px;
 }
 
@@ -41,7 +41,7 @@
 }
 
 .row:nth-child(odd) {
-	background-color: rgba(155, 218, 218, 0.25);
+	background-color: $siteteal;
 }
 
 .row-data {
@@ -90,5 +90,5 @@
 }
 
 .row-button:active {
-	background-color: pink;
+	background-color: $sitepeach;
 }

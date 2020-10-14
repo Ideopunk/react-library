@@ -40,36 +40,29 @@ input {
 }
 
 input:hover {
-	background-color: rgba(173, 216, 230, 0.25);
+	background-color: lighten($siteteal, 10%);
 }
 
 input:focus {
-	border-color: rgb(255, 79, 109);
-	background-color: rgba(155, 218, 218, 0.5);
+	border-color: darken($sitepeach, 10%);
+	background-color: $siteteal;
 }
 
 .submit {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
-	background-color: rgb(255, 212, 219);
-	border-color: rgb(255, 79, 109);
+	background-color: lighten($sitepeach, 10%);
+	border-color: darken($sitepeach, 20%);
 	transition: background-color linear $trans-time;
 }
 
 .submit:hover {
-	background-color: rgb(255, 121, 143);
+	background-color: $sitepeach;
 }
 
 .submit:active {
-	background-color: rgb(255, 79, 108);
-}
-
-input[type="checkbox"] {
-	// position: absolute;
-	// left: -9999px;
-	height: 1.5rem;
-	width: 1.5rem;
+	background-color: darken($sitepeach, 10%);
 }
 
 .cover {
@@ -78,8 +71,13 @@ input[type="checkbox"] {
 	top: 0;
 	width: 100vw;
 	height: 100vh;
-	background-color: rgba(255, 255, 255, 0.5);
+	background-color: rgba(255, 255, 255, 0);
+	transition: background-color linear 0.5s;
 }
+
+.cover-fade {
+	background-color: rgba(255, 255, 255, 0.5);
+} 
 
 .modifier {
 	position: relative;
@@ -87,7 +85,7 @@ input[type="checkbox"] {
 	left: 25%;
 	top: 30%;
 	background-color: white;
-	opacity: 1;
+	opacity: 0;
 	z-index: 1;
 	padding: 1rem;
 	box-sizing: border-box;
@@ -96,6 +94,11 @@ input[type="checkbox"] {
 	border-top-right-radius: 2px;
 	border-bottom-left-radius: 2px;
 	border: 3px solid black;
+	transition: opacity linear 0.5s;
+}
+
+.fade {
+	opacity: 1;
 }
 
 @media (max-width: 1023px) {

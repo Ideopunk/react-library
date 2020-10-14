@@ -31,7 +31,7 @@ const Table = (props) => {
 	});
 	return (
 		<div className="table-container">
-			<h1 className="table-title">My Books</h1>
+			<h1 className="table-title">{props.name}'s Books</h1>
 			<div className="table">{booksTable}</div>
 		</div>
 	);

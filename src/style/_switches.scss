@@ -57,14 +57,14 @@ label.toggle-item {
 	position: relative;
 	transition: all 0.3s ease;
 	transform-origin: 20% center;
-    cursor: pointer;
-    // width and height of circle
+	cursor: pointer;
+	// width and height of circle
 	&:before {
 		display: block;
 		transition: all 0.2s ease;
 		width: 90%;
 		height: 90%;
-        top: 15%;
+		top: 15%;
 		left: 0.25em;
 		border-radius: 2em;
 		transition: 0.3s ease;
@@ -74,7 +74,7 @@ label.toggle-item {
 // Uhh also width and height of circle.
 .normal {
 	label {
-		background: rgb(255, 189, 200);
+		background: $sitepeach;
 		&:before {
 			width: 1.45rem;
 			height: 1.45rem;
@@ -95,29 +95,29 @@ label.toggle-item {
 
 .normal {
 	label:hover {
-		background: rgb(255, 121, 143);
+		background: darken($sitepeach, 10%);
 	}
 }
 
-// How far right does it move? 
+// How far right does it move?
 #top-read:checked + label {
-	background: rgb(155, 218, 218);
+	background: $siteteal;
 	&:before {
-        left: 3.25rem;
+		left: 3.25rem;
 	}
 }
 
 #edit-read:checked + label {
-	background: rgb(155, 218, 218);
+	background: $siteteal;
 	&:before {
-        left: 3.25rem;
+		left: 3.25rem;
 	}
 }
 
 #top-read:checked + label:hover {
-	background: darken(rgb(155, 218, 218), 10%);
+	background: darken($siteteal, 10%);
 }
 
 #edit-read:checked + label:hover {
-	background: darken(rgb(155, 218, 218), 10%);
+	background: darken($siteteal, 10%);
 }

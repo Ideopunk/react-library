@@ -29,7 +29,6 @@ function App() {
 				.then(() => {
 					console.log(cred.user);
 					setLogin(1);
-					setUID(cred.user.uid);
 					setLoadingUser(false);
 				});
 		});
@@ -58,7 +57,6 @@ function App() {
 				console.log(cred.user);
 				setLogin(1);
 				setLoadingUser(false);
-				setUID(cred.user.uid);
 				setError(false);
 			})
 			.catch((errorMessage) => {
@@ -123,11 +121,13 @@ function App() {
 	};
 
 	const userWhisperer = () => {
+		console.log('userwhisperer')
 		auth.onAuthStateChanged((user) => {
 			console.log(user);
 			if (user) {
 				console.log("user logged in", user);
 				console.log(user.uid);
+				setUID(user.uid)
 				db.collection("users")
 					.doc(user.uid)
 					.get()
@@ -200,6 +200,7 @@ function App() {
 						initiateModify={initiateModify}
 						handleDelete={handleDelete}
 						books={books}
+						name={name}
 					/>
 				) : (
 					<div className="center">

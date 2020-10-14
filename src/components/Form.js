@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import ToggleSwitch from "./ToggleSwitch";
 
 const TopForm = (props) => {
@@ -14,6 +14,8 @@ const TopForm = (props) => {
 };
 
 const Modifier = (props) => {
+	const [fade, setFade] = useState(false)
+
 	const initialState = {
 		title: props.book.title,
 		author: props.book.author,
@@ -28,8 +30,12 @@ const Modifier = (props) => {
 		}
 	};
 
+	useEffect(() => {
+		setFade(true)
+	}, []);
+
 	return (
-		<div className="cover" value="cover" name="cover" onClick={(e) => closeModal(e)}>
+		<div className={`cover ${fade? "cover-fade" : ""}`} value="cover" name="cover" onClick={(e) => closeModal(e)}>
 			<Form
 				id={props.book.id}
 				handleModify={props.handleModify}
@@ -43,6 +49,7 @@ const Modifier = (props) => {
 
 const Form = (props) => {
 	const [form, setForm] = useState(props.initialState);
+	const [fade, setFade] = useState(false)
 
 	const handleChange = (e) => {
 		const target = e.target;
@@ -67,8 +74,14 @@ const Form = (props) => {
 		props.handleModify(props.id, form);
 	};
 
+	useEffect(() => {
+		if (props.type !== "top") {
+			setFade(true)
+		}
+	}, [props.type]);
+
 	return (
-		<div name={props.cn} className={props.cn}>
+		<div name={props.cn} className={`${props.cn} ${fade? "fade" : ""}`}>
 			<h1>{props.type === "top" ? "Add a book" : "Update book"}</h1>
 			<form className="form" onSubmit={props.type === "top" ? handleSubmit : handleEdit}>
 				<label>
