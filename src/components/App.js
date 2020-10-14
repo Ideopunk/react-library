@@ -18,7 +18,6 @@ function App() {
 
 	const handleSignUp = (email, password, name) => {
 		setLoadingUser(true);
-		console.log("new account");
 		auth.createUserWithEmailAndPassword(email, password).then((cred) => {
 			return db
 				.collection("users")
@@ -27,7 +26,6 @@ function App() {
 					name: name,
 				})
 				.then(() => {
-					console.log(cred.user);
 					setLogin(1);
 					setLoadingUser(false);
 				});
@@ -42,7 +40,6 @@ function App() {
 				setLogin(2);
 				setBooks([]);
 				setModifier(false);
-				console.log("logged out");
 			})
 			.catch((err) => {
 				console.log(err);
@@ -53,8 +50,6 @@ function App() {
 		setLoadingUser(true);
 		auth.signInWithEmailAndPassword(email, password)
 			.then((cred) => {
-				console.log("log-in");
-				console.log(cred.user);
 				setLogin(1);
 				setLoadingUser(false);
 				setError(false);
@@ -67,9 +62,6 @@ function App() {
 			});
 	};
 
-	useEffect(() => {
-		console.log(UID);
-	}, [UID]);
 
 	const handleAdd = (obj) => {
 		console.log(`UID: ${UID}`);
@@ -77,9 +69,7 @@ function App() {
 			.doc(UID)
 			.collection("books")
 			.add(obj)
-			.then((docRef) => {
-				console.log(docRef);
-			})
+
 			.catch((error) => {
 				console.log(`error: ${error}`);
 			});
@@ -97,18 +87,15 @@ function App() {
 	};
 
 	const initiateModify = (book) => {
-		console.log(book);
 		setModifier(book);
 	};
 
 	const handleModify = (id, obj) => {
-		console.log("handleModify");
 		db.collection("users")
 			.doc(UID)
 			.collection("books")
 			.doc(id)
 			.set(obj)
-			.then(console.log("Succesful modification!"))
 			.catch((error) => {
 				console.log(`error: ${error}`);
 			});
@@ -121,12 +108,8 @@ function App() {
 	};
 
 	const userWhisperer = () => {
-		console.log('userwhisperer')
 		auth.onAuthStateChanged((user) => {
-			console.log(user);
 			if (user) {
-				console.log("user logged in", user);
-				console.log(user.uid);
 				setUID(user.uid)
 				db.collection("users")
 					.doc(user.uid)
@@ -135,20 +118,16 @@ function App() {
 						setName(result.data().name);
 						setLogin(1);
 						databaseWhisperer(user.uid);
-					});
+					}).catch(error => {console.log(error)});
 				
 			} else {
-				console.log("user logged out");
 				setLogin(2);
-				// databaseWhisperer();
 			}
 		});
 	};
 
 	const databaseWhisperer = (UID) => {
-		console.log("databaseWhisperer");
 		if (UID) {
-			console.log(`UID: ${UID}`);
 			db.collection("users")
 				.doc(UID)
 				.collection("books")

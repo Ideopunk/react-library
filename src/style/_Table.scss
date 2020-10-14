@@ -41,7 +41,7 @@
 }
 
 .row:nth-child(odd) {
-	background-color: $siteteal;
+	background-color: lighten($siteteal, 15%);
 }
 
 .row-data {

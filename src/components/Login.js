@@ -17,6 +17,7 @@ const UserMenu = (props) => {
 			Username
 			<input
 				name="name"
+				autoComplete="username"
 				required
 				value={name}
 				onChange={(e) => {
@@ -34,6 +35,7 @@ const UserMenu = (props) => {
 				<input
 					type="email"
 					name="email"
+					autoComplete="email"
 					value={email}
 					required
 					onChange={(e) => {
@@ -46,6 +48,8 @@ const UserMenu = (props) => {
 				<input
 					type="password"
 					name="password"
+					className="placeholder"
+					autoComplete="password"
 					minLength={6}
 					value={password}
 					placeholder={props.warning ? props.warning : ""}
@@ -54,7 +58,7 @@ const UserMenu = (props) => {
 					}}
 				/>
 			</label>
-			<input type="submit" value={props.submitText} />
+			<input type="submit" className="submit" value={props.submitText} />
 		</form>
 	);
 };
@@ -80,12 +84,14 @@ const Menu = (props) => {
 			) : (
 				""
 			)}
-			<li className={loginMenu ? "active" : ""} onClick={toggleLogin}>
-				Login
-			</li>
-			<li className={signUpMenu ? "active" : ""} onClick={toggleSignUp}>
-				Sign up
-			</li>
+			<div className="sub-menu">
+				<li className={loginMenu ? "active" : ""} onClick={toggleLogin}>
+					Login
+				</li>
+				<li className={signUpMenu ? "active" : ""} onClick={toggleSignUp}>
+					Sign up
+				</li>
+			</div>
 		</ul>
 	);
 
@@ -132,14 +138,9 @@ const Profile = (props) => {
 	// };
 
 	return (
-		<div className="profile-div">
+		<div className="profile-div" onClick={() => props.handleSignOut()}>
 			<p>Hi {props.name}!</p>
-			<img
-				src={power}
-				className="power-button"
-				onClick={() => props.handleSignOut()}
-				alt="end session"
-			/>
+			<img src={power} className="power-button" alt="end session" />
 		</div>
 	);
 };

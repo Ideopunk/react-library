@@ -17,14 +17,15 @@
 }
 
 .profile-div:hover {
-    background-color: rgba(173, 216, 230, 0.25);
+    background-color: darken($siteteal, 10%);
 }
 
 @media (max-width: 767px) {
     .profile-div {
         padding: 0;
         right: 2rem;
-        top: 90%;
+        top: 85%;
+        background-color: lighten($siteteal, 10%);
     }
 
     .profile-div > p {
@@ -34,12 +35,11 @@
 
 .power-button {
     width: 1.75rem;
-    fill: rgb(230, 80, 80);
 }
 
 
 
-.menu {
+.sub-menu {
     // height: 300px;
     display: flex;
     justify-content: space-evenly;
@@ -61,12 +61,12 @@
     }
 }
 
-.menu > * {
+.sub-menu > * {
     transition: color linear 0.1s;
 }
 
-.menu > *:hover {
-    color: rgb(255, 92, 119);
+.sub-menu > *:hover {
+    color: $sitepeach;
 }
 
 .sign-up-menu {
@@ -87,11 +87,25 @@
 }
 
 .error-message {
+    padding-top: 1rem;
     font-size: 1rem;
     color: red;
     text-align: center;
 }
 
 .active {
-    color: rgb(255, 92, 119);
+    color: darken($sitepeach, 10%);
 }
+
+.placeholder::-webkit-input-placeholder {
+    text-align: center;
+    }
+    .placeholder:-moz-placeholder { /* Firefox 18- */
+    text-align: center;  
+    }
+    .placeholder::-moz-placeholder {  /* Firefox 19+ */
+    text-align: center;  
+    }
+    .placeholder:-ms-input-placeholder {  
+    text-align: center; 
+    }
