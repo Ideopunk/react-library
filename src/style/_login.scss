@@ -1,7 +1,11 @@
-.profile-button {
+.profile-div {
     position: fixed;
     right: 3rem;
     top: 2rem;
+    display: flex;
+}
+
+.profile-button {
     border-radius: 50%;
     width: 4rem;
     z-index: 2;

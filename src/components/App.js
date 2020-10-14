@@ -14,6 +14,7 @@ function App() {
 	const [login, setLogin] = useState(0);
 	const [error, setError] = useState(false);
 	const [UID, setUID] = useState("");
+	const [name, setName] = useState("");
 
 	const handleSignUp = (email, password, name) => {
 		setLoadingUser(true);
@@ -36,7 +37,6 @@ function App() {
 
 	const handleSignOut = () => {
 		setLogin(0);
-		// databaseWhisperer();
 
 		auth.signOut()
 			.then(() => {
@@ -70,11 +70,11 @@ function App() {
 	};
 
 	useEffect(() => {
-		console.log(UID)
-	}, [UID])
+		console.log(UID);
+	}, [UID]);
 
 	const handleAdd = (obj) => {
-		console.log(`UID: ${UID}`)
+		console.log(`UID: ${UID}`);
 		db.collection("users")
 			.doc(UID)
 			.collection("books")
@@ -105,7 +105,9 @@ function App() {
 
 	const handleModify = (id, obj) => {
 		console.log("handleModify");
-		db.collection("users").doc(UID).collection("books")
+		db.collection("users")
+			.doc(UID)
+			.collection("books")
 			.doc(id)
 			.set(obj)
 			.then(console.log("Succesful modification!"))
@@ -125,7 +127,8 @@ function App() {
 			console.log(user);
 			if (user) {
 				console.log("user logged in", user);
-				console.log(user.uid)
+				console.log(user.uid);
+				db.collection("users").doc(user.uid).get().then(result => setName((result.data().name)));
 				setLogin(1);
 				databaseWhisperer(user.uid);
 			} else {
@@ -137,47 +140,54 @@ function App() {
 	};
 
 	const databaseWhisperer = (UID) => {
-		console.log("databaseWhisperer")
+		console.log("databaseWhisperer");
 		if (UID) {
-			console.log(`UID: ${UID}`)
-			db.collection("users").doc(UID).collection("books").onSnapshot((snapshot) => {
-				let changes = snapshot.docChanges();
-				changes.forEach((change) => {
-					let tempObj = change.doc.data();
-					tempObj.id = change.doc.id;
-					if (change.type === "added") {
-						setBooks((books) => [...books, tempObj]);
-					} else if (change.type === "modified") {
-						setBooks((books) =>
-							books.map((book) => {
-								if (book.id === tempObj.id) {
-									book = tempObj;
-								}
-								return book;
-							})
-						);
-					} else if (change.type === "removed") {
-						setBooks((books) =>
-							books.filter((book) => {
-								return book.id !== tempObj.id;
-							})
-						);
+			console.log(`UID: ${UID}`);
+			db.collection("users")
+				.doc(UID)
+				.collection("books")
+				.onSnapshot(
+					(snapshot) => {
+						let changes = snapshot.docChanges();
+						changes.forEach((change) => {
+							let tempObj = change.doc.data();
+							tempObj.id = change.doc.id;
+							if (change.type === "added") {
+								setBooks((books) => [...books, tempObj]);
+							} else if (change.type === "modified") {
+								setBooks((books) =>
+									books.map((book) => {
+										if (book.id === tempObj.id) {
+											book = tempObj;
+										}
+										return book;
+									})
+								);
+							} else if (change.type === "removed") {
+								setBooks((books) =>
+									books.filter((book) => {
+										return book.id !== tempObj.id;
+									})
+								);
+							}
+						});
+						setLoadingDB(false);
+					},
+					(err) => {
+						console.log(err.message);
 					}
-				});
-				setLoadingDB(false);
-			});
+				);
 		}
 	};
 
 	useEffect(() => {
 		userWhisperer();
-		databaseWhisperer(UID);
 	}, []);
 
 	if (login === 1) {
 		return (
 			<div className="App">
-				<Profile handleSignOut={handleSignOut} />
+				<Profile name={name} handleSignOut={handleSignOut} />
 				<TopForm handleAdd={handleAdd} />
 				{!loadingDB ? (
 					<Table
