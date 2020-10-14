@@ -4,20 +4,37 @@ import Loader from "react-loader-spinner";
 const UserMenu = (props) => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [name, setName] = useState("");
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		props.handleSubmit(email, password);
+		props.handleSubmit(email, password, name);
 	};
+
+	const user = (
+		<label>
+			Username
+			<input
+				name="name"
+				required
+				value={name}
+				onChange={(e) => {
+					setName(e.target.value);
+				}}
+			/>
+		</label>
+	);
 
 	return (
 		<form className="sign-up-menu" onSubmit={(e) => handleSubmit(e)}>
+            {props.type === "sign-up"? user : ""}
 			<label>
-				User
+				Email
 				<input
 					type="email"
 					name="email"
 					value={email}
+					required
 					onChange={(e) => {
 						setEmail(e.target.value);
 					}}
@@ -67,7 +84,13 @@ const Menu = (props) => {
 	} else {
 		logUl = (
 			<ul className="menu">
-                {props.error? <li className="error-message">Login failed. Check your spelling or something??</li> : ""}
+				{props.error ? (
+					<li className="error-message">
+						Login failed. Check your spelling or something??
+					</li>
+				) : (
+					""
+				)}
 				<li onClick={toggleLogin}>Login</li>
 				<li onClick={toggleSignUp}>Sign up</li>
 			</ul>
@@ -92,14 +115,15 @@ const Menu = (props) => {
 				{logUl}
 				{signUpMenu ? (
 					<UserMenu
-						warning="Do not reuse passwords"
+                        warning="Do not reuse passwords"
+                        type="sign-up"
 						submitText="Create Account"
 						handleSubmit={props.handleSignUp}
 					/>
 				) : (
 					""
 				)}
-				{loginMenu ? <UserMenu submitText="Log in" handleSubmit={props.handleLogin} /> : ""}
+				{loginMenu ? <UserMenu type="log-in" submitText="Log in" handleSubmit={props.handleLogin} /> : ""}
 			</div>
 		);
 	}

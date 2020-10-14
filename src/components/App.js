@@ -11,23 +11,43 @@ function App() {
 	const [modifier, setModifier] = useState(false);
 	const [loadingDB, setLoadingDB] = useState(true); // Hmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
 	const [loadingUser, setLoadingUser] = useState(false);
-	const [login, setLogin] = useState(false);
+	const [login, setLogin] = useState(0);
 	const [error, setError] = useState(false);
+	const [UID, setUID] = useState("");
 
-	const handleSignUp = (email, password) => {
+	const handleSignUp = (email, password, name) => {
 		setLoadingUser(true);
 		console.log("new account");
 		auth.createUserWithEmailAndPassword(email, password).then((cred) => {
-			console.log(cred.user);
-			setLogin(true);
-			setLoadingUser(false);
+			return db
+				.collection("users")
+				.doc(cred.user.uid)
+				.set({
+					name: name,
+				})
+				.then(() => {
+					console.log(cred.user);
+					setLogin(1);
+					setUID(cred.user.uid);
+					setLoadingUser(false);
+				});
 		});
 	};
 
 	const handleSignOut = () => {
-		auth.signOut().then(() => {
-			console.log("logged out");
-		});
+		setLogin(0);
+		// databaseWhisperer();
+
+		auth.signOut()
+			.then(() => {
+				setLogin(2);
+				setBooks([]);
+				setModifier(false);
+				console.log("logged out");
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 	};
 
 	const handleLogin = (email, password) => {
@@ -36,18 +56,28 @@ function App() {
 			.then((cred) => {
 				console.log("log-in");
 				console.log(cred.user);
-				setLogin(true);
+				setLogin(1);
 				setLoadingUser(false);
+				setUID(cred.user.uid);
+				setError(false);
 			})
 			.catch((errorMessage) => {
+				setLogin(2);
 				setLoadingUser(false);
 				setError(true);
 				console.log(errorMessage);
 			});
 	};
 
+	useEffect(() => {
+		console.log(UID)
+	}, [UID])
+
 	const handleAdd = (obj) => {
-		db.collection("books")
+		console.log(`UID: ${UID}`)
+		db.collection("users")
+			.doc(UID)
+			.collection("books")
 			.add(obj)
 			.then((docRef) => {
 				console.log(docRef);
@@ -58,7 +88,9 @@ function App() {
 	};
 
 	const handleDelete = (id) => {
-		db.collection("books")
+		db.collection("users")
+			.doc(UID)
+			.collection("books")
 			.doc(id)
 			.delete()
 			.catch((error) => {
@@ -73,7 +105,7 @@ function App() {
 
 	const handleModify = (id, obj) => {
 		console.log("handleModify");
-		db.collection("books")
+		db.collection("users").doc(UID).collection("books")
 			.doc(id)
 			.set(obj)
 			.then(console.log("Succesful modification!"))
@@ -90,51 +122,59 @@ function App() {
 
 	const userWhisperer = () => {
 		auth.onAuthStateChanged((user) => {
+			console.log(user);
 			if (user) {
 				console.log("user logged in", user);
-				setLogin(true);
+				console.log(user.uid)
+				setLogin(1);
+				databaseWhisperer(user.uid);
 			} else {
 				console.log("user logged out");
-				setLogin(false);
+				setLogin(2);
+				// databaseWhisperer();
 			}
 		});
 	};
 
-	const databaseWhisperer = () => {
-		db.collection("books").onSnapshot((snapshot) => {
-			let changes = snapshot.docChanges();
-			changes.forEach((change) => {
-				let tempObj = change.doc.data();
-				tempObj.id = change.doc.id;
-				if (change.type === "added") {
-					setBooks((books) => [...books, tempObj]);
-				} else if (change.type === "modified") {
-					setBooks((books) =>
-						books.map((book) => {
-							if (book.id === tempObj.id) {
-								book = tempObj;
-							}
-							return book;
-						})
-					);
-				} else if (change.type === "removed") {
-					setBooks((books) =>
-						books.filter((book) => {
-							return book.id !== tempObj.id;
-						})
-					);
-				}
+	const databaseWhisperer = (UID) => {
+		console.log("databaseWhisperer")
+		if (UID) {
+			console.log(`UID: ${UID}`)
+			db.collection("users").doc(UID).collection("books").onSnapshot((snapshot) => {
+				let changes = snapshot.docChanges();
+				changes.forEach((change) => {
+					let tempObj = change.doc.data();
+					tempObj.id = change.doc.id;
+					if (change.type === "added") {
+						setBooks((books) => [...books, tempObj]);
+					} else if (change.type === "modified") {
+						setBooks((books) =>
+							books.map((book) => {
+								if (book.id === tempObj.id) {
+									book = tempObj;
+								}
+								return book;
+							})
+						);
+					} else if (change.type === "removed") {
+						setBooks((books) =>
+							books.filter((book) => {
+								return book.id !== tempObj.id;
+							})
+						);
+					}
+				});
+				setLoadingDB(false);
 			});
-			setLoadingDB(false);
-		});
+		}
 	};
 
 	useEffect(() => {
 		userWhisperer();
-		databaseWhisperer();
+		databaseWhisperer(UID);
 	}, []);
 
-	if (login) {
+	if (login === 1) {
 		return (
 			<div className="App">
 				<Profile handleSignOut={handleSignOut} />
@@ -167,7 +207,7 @@ function App() {
 				)}
 			</div>
 		);
-	} else {
+	} else if (login === 2) {
 		return (
 			<div className="App">
 				<Menu
@@ -177,6 +217,20 @@ function App() {
 					login={login}
 					error={error}
 				/>
+			</div>
+		);
+	} else {
+		return (
+			<div className="App">
+				<div className="center">
+					<Loader
+						type="TailSpin"
+						color="pink"
+						height={100}
+						width={100}
+						timeout={3000} //3 secs
+					/>
+				</div>
 			</div>
 		);
 	}
