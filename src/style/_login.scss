@@ -1,111 +1,110 @@
 .profile-div {
-    position: fixed;
-    padding: 0 1rem;
-    box-sizing: border-box;
-    right: 3rem;
-    top: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    column-gap: 0.5rem;
-    line-height: 1.5;
-    background-color: white;
-    border-radius: 50px;
-    border: 2px solid rgba(0, 0, 0, 0.4);
-    z-index: 2;
-    transition: background-color linear 0.1s;
+	position: fixed;
+	padding: 0 1rem;
+	box-sizing: border-box;
+	right: 3rem;
+	top: 2rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	column-gap: 0.5rem;
+	line-height: 1.5;
+	background-color: white;
+	border-radius: 50px;
+	border: 2px solid rgba(0, 0, 0, 0.4);
+	z-index: 2;
+	transition: background-color linear 0.1s;
 }
 
 .profile-div:hover {
-    background-color: darken($siteteal, 10%);
+	background-color: darken($siteteal, 10%);
 }
 
 @media (max-width: 767px) {
-    .profile-div {
-        padding: 0;
-        right: 2rem;
-        top: 85%;
-        background-color: lighten($siteteal, 10%);
-    }
+	.profile-div {
+		padding: 0;
+		right: 2rem;
+		top: 85%;
+		background-color: lighten($siteteal, 10%);
+	}
 
-    .profile-div > p {
-        display: none;
-    }
+	.profile-div > p {
+		display: none;
+	}
 }
 
 .power-button {
-    width: 1.75rem;
+	width: 1.75rem;
 }
 
-
-
 .sub-menu {
-    // height: 300px;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    gap: 2rem;
-    font-size: 3rem;
-    padding: 1rem;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	gap: 2rem;
+	font-size: 3rem;
+	padding: 1rem;
 }
 
 @media (max-width: 1023px) {
-    .menu {
-        font-size: 2rem;
-    }
+	.menu {
+		font-size: 2rem;
+	}
 }
 
 @media (max-width: 767px) {
-    .menu {
-        font-size: 1.5rem;
-    }
+	.menu {
+		font-size: 1.5rem;
+	}
 }
 
 .sub-menu > * {
-    transition: color linear 0.1s;
+	transition: color linear 0.1s;
 }
 
 .sub-menu > *:hover {
-    color: $sitepeach;
+	color: $sitepeach;
 }
 
 .sign-up-menu {
-    border-top: 2px solid black;
-    padding: 1rem 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+	border-top: 2px solid black;
+	padding: 1rem 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
 }
 
 .sign-up-menu > * {
-    width: 50%;
+	width: 50%;
 }
 
 .sign-up-menu > *:last-child {
-    margin-top: 1.5rem;
+	margin-top: 1.5rem;
 }
 
 .error-message {
-    padding-top: 1rem;
-    font-size: 1rem;
-    color: red;
-    text-align: center;
+	padding-top: 1rem;
+	font-size: 1rem;
+	color: red;
+	text-align: center;
 }
 
 .active {
-    color: darken($sitepeach, 10%);
+	color: darken($sitepeach, 10%);
 }
 
 .placeholder::-webkit-input-placeholder {
-    text-align: center;
-    }
-    .placeholder:-moz-placeholder { /* Firefox 18- */
-    text-align: center;  
-    }
-    .placeholder::-moz-placeholder {  /* Firefox 19+ */
-    text-align: center;  
-    }
-    .placeholder:-ms-input-placeholder {  
-    text-align: center; 
-    }
+	text-align: center;
+}
+.placeholder:-moz-placeholder {
+	/* Firefox 18- */
+	text-align: center;
+}
+.placeholder::-moz-placeholder {
+	/* Firefox 19+ */
+	text-align: center;
+}
+.placeholder:-ms-input-placeholder {
+	text-align: center;
+}

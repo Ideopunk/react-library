@@ -9,8 +9,8 @@ import { Profile, Menu } from "./Login";
 function App() {
 	const [books, setBooks] = useState([]);
 	const [modifier, setModifier] = useState(false);
-	const [loadingDB, setLoadingDB] = useState(true); // Hmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
-	const [loadingUser, setLoadingUser] = useState(false);
+	const [loadingDB, setLoadingDB] = useState(true); // for loader
+	const [loadingUser, setLoadingUser] = useState(false); // for loader
 	const [login, setLogin] = useState(0);
 	const [error, setError] = useState(false);
 	const [UID, setUID] = useState("");
@@ -62,7 +62,6 @@ function App() {
 			});
 	};
 
-
 	const handleAdd = (obj) => {
 		console.log(`UID: ${UID}`);
 		db.collection("users")
@@ -86,10 +85,12 @@ function App() {
 			});
 	};
 
+	// popup the mod form.
 	const initiateModify = (book) => {
 		setModifier(book);
 	};
 
+	// submit modification.
 	const handleModify = (id, obj) => {
 		db.collection("users")
 			.doc(UID)
@@ -103,14 +104,16 @@ function App() {
 		setModifier(false);
 	};
 
+	// close the mod form.
 	const closeModify = () => {
 		setModifier(false);
 	};
 
+	// we have a user token? Then we set some variables and start listening to database changes too.
 	const userWhisperer = () => {
 		auth.onAuthStateChanged((user) => {
 			if (user) {
-				setUID(user.uid)
+				setUID(user.uid);
 				db.collection("users")
 					.doc(user.uid)
 					.get()
@@ -118,14 +121,17 @@ function App() {
 						setName(result.data().name);
 						setLogin(1);
 						databaseWhisperer(user.uid);
-					}).catch(error => {console.log(error)});
-				
+					})
+					.catch((error) => {
+						console.log(error);
+					});
 			} else {
 				setLogin(2);
 			}
 		});
 	};
 
+	// listening for database changes.
 	const databaseWhisperer = (UID) => {
 		if (UID) {
 			db.collection("users")
@@ -165,6 +171,7 @@ function App() {
 		}
 	};
 
+	// after mounting, check to see if we have a user token.
 	useEffect(() => {
 		userWhisperer();
 	}, []);
