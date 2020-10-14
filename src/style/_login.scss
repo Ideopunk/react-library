@@ -1,27 +1,50 @@
 .profile-div {
     position: fixed;
+    padding: 0 1rem;
+    box-sizing: border-box;
     right: 3rem;
     top: 2rem;
     display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 50px;
+    border: 2px solid rgba(0, 0, 0, 0.4);
+    z-index: 2;
+    transition: background-color linear 0.1s;
+}
+
+.profile-div:hover {
+    background-color: rgba(173, 216, 230, 0.25);
 }
 
 .profile-button {
-    border-radius: 50%;
-    width: 4rem;
-    z-index: 2;
-    fill: orangered;
-    // border: 3px solid black;
+    margin-left: 0.5rem;
+    width: 3rem;
+    fill: rgb(230, 80, 80);
 }
+
+
 
 .menu {
     // height: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
     gap: 2rem;
     font-size: 3rem;
     padding: 1rem;
+}
+
+@media (max-width: 1023px) {
+    .menu {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .menu {
+        font-size: 1.5rem;
+    }
 }
 
 .menu > * {
@@ -53,4 +76,8 @@
     font-size: 1rem;
     color: red;
     text-align: center;
+}
+
+.active {
+    color: rgb(255, 92, 119);
 }

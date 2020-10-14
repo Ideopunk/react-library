@@ -128,9 +128,15 @@ function App() {
 			if (user) {
 				console.log("user logged in", user);
 				console.log(user.uid);
-				db.collection("users").doc(user.uid).get().then(result => setName((result.data().name)));
-				setLogin(1);
-				databaseWhisperer(user.uid);
+				db.collection("users")
+					.doc(user.uid)
+					.get()
+					.then((result) => {
+						setName(result.data().name);
+						setLogin(1);
+						databaseWhisperer(user.uid);
+					});
+				
 			} else {
 				console.log("user logged out");
 				setLogin(2);
@@ -224,7 +230,6 @@ function App() {
 					loading={loadingUser}
 					handleLogin={handleLogin}
 					handleSignUp={handleSignUp}
-					login={login}
 					error={error}
 				/>
 			</div>
