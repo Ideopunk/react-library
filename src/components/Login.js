@@ -77,21 +77,21 @@ const Menu = (props) => {
 	};
 
 	const logUl = (
-		<ul className="menu">
+		<div className="menu">
 			{props.error ? (
-				<li className="error-message">Login failed. Check your spelling or something??</li>
+				<p className="error-message">Login failed. Check your spelling or something??</p>
 			) : (
 				""
 			)}
-			<div className="sub-menu">
+			<ul className="sub-menu">
 				<li className={loginMenu ? "active" : ""} onClick={toggleLogin}>
 					Login
 				</li>
 				<li className={signUpMenu ? "active" : ""} onClick={toggleSignUp}>
 					Sign up
 				</li>
-			</div>
-		</ul>
+			</ul>
+		</div>
 	);
 
 	if (props.loading) {
