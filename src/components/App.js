@@ -28,6 +28,7 @@ function App() {
 				.then(() => {
 					setLogin(1);
 					setLoadingUser(false);
+					setError(false);
 				});
 		});
 	};
