@@ -1,56 +1,5 @@
 import React, { useEffect, useState } from "react";
 
-const TopForm = (props) => {
-	const initialState = { title: "", author: "", pages: 0, read: false };
-	return (
-		<Form
-			type="top"
-			handleAdd={props.handleAdd}
-			initialState={initialState}
-			cn="form-container"
-		/>
-	);
-};
-
-const Modifier = (props) => {
-	const [fade, setFade] = useState(false);
-
-	const initialState = {
-		title: props.book.title,
-		author: props.book.author,
-		pages: props.book.pages,
-		read: props.book.read,
-	};
-
-	const closeModal = (e) => {
-		const value = e.target.getAttribute("value");
-		if (value === "cover") {
-			props.closeModify();
-		}
-	};
-
-	useEffect(() => {
-		setFade(true);
-	}, []);
-
-	return (
-		<div
-			className={`cover ${fade ? "cover-fade" : ""}`}
-			value="cover"
-			name="cover"
-			onClick={(e) => closeModal(e)}
-		>
-			<Form
-				id={props.book.id}
-				handleModify={props.handleModify}
-				type="modifier"
-				initialState={initialState}
-				cn="modifier"
-			/>
-		</div>
-	);
-};
-
 const Form = (props) => {
 	const [form, setForm] = useState(props.initialState);
 	const [fade, setFade] = useState(false);
@@ -138,4 +87,4 @@ const Form = (props) => {
 	);
 };
 
-export { Form, TopForm, Modifier };
+export default Form;

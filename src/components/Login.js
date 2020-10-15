@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Loader from "react-loader-spinner";
-import power from "../assets/power-outline.svg";
 
 const UserMenu = (props) => {
 	const [email, setEmail] = useState("");
@@ -131,18 +130,5 @@ const Menu = (props) => {
 	}
 };
 
-const Profile = (props) => {
-	// const [profile, setProfile] = useState(false);
-	// const resetProfile = () => {
-	// 	setProfile(false);
-	// };
 
-	return (
-		<div className="profile-div" onClick={() => props.handleSignOut()}>
-			<p>Hi {props.name}!</p>
-			<img src={power} className="power-button" alt="end session" />
-		</div>
-	);
-};
-
-export { Profile, Menu };
+export default Menu;

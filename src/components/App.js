@@ -1,10 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
+import Loader from "react-loader-spinner";
 import "../style/App.scss";
 import { auth, db } from "../config/fbConfig";
-import { TopForm, Modifier } from "./Form";
-import Table from "./Table";
-import Loader from "react-loader-spinner";
-import { Profile, Menu } from "./Login";
+import Menu from "./Login";
+const Table = lazy(() => import("./Table"));
+const Profile = lazy(() => import("./Profile"));
+const TopForm = lazy(() => import("./TopForm"));
+const Modifier = lazy(() => import("./Modifier"));
+
+const LoaderContainer = () => {
+	return (
+		<div className="center">
+			<Loader
+				type="TailSpin"
+				color="pink"
+				height={100}
+				width={100}
+				timeout={3000} //3 secs
+			/>
+		</div>
+	);
+};
 
 function App() {
 	const [books, setBooks] = useState([]);
@@ -114,7 +130,9 @@ function App() {
 	const userWhisperer = () => {
 		auth.onAuthStateChanged((user) => {
 			while (loadingUser) {
-				setTimeout(() => {console.log("waiting for user's name to be added to database")}, 200)
+				setTimeout(() => {
+					console.log("waiting for user's name to be added to database");
+				}, 200);
 			}
 			if (user) {
 				setUID(user.uid);
@@ -183,32 +201,32 @@ function App() {
 	if (login === 1) {
 		return (
 			<div className="App">
-				<Profile name={name} handleSignOut={handleSignOut} />
-				<TopForm handleAdd={handleAdd} />
+				<Suspense fallback={<LoaderContainer />}>
+					<Profile name={name} handleSignOut={handleSignOut} />
+				</Suspense>
+				<Suspense fallback={<LoaderContainer />}>
+					<TopForm handleAdd={handleAdd} />
+				</Suspense>
 				{!loadingDB ? (
-					<Table
-						initiateModify={initiateModify}
-						handleDelete={handleDelete}
-						books={books}
-						name={name}
-					/>
-				) : (
-					<div className="center">
-						<Loader
-							type="TailSpin"
-							color="pink"
-							height={100}
-							width={100}
-							timeout={3000} //3 secs
+					<Suspense fallback={<LoaderContainer />}>
+						<Table
+							initiateModify={initiateModify}
+							handleDelete={handleDelete}
+							books={books}
+							name={name}
 						/>
-					</div>
+					</Suspense>
+				) : (
+					<LoaderContainer />
 				)}
 				{modifier ? (
-					<Modifier
-						closeModify={closeModify}
-						handleModify={handleModify}
-						book={modifier}
-					/>
+					<Suspense fallback={<LoaderContainer />}>
+						<Modifier
+							closeModify={closeModify}
+							handleModify={handleModify}
+							book={modifier}
+						/>
+					</Suspense>
 				) : (
 					""
 				)}
@@ -228,15 +246,7 @@ function App() {
 	} else {
 		return (
 			<div className="App">
-				<div className="center">
-					<Loader
-						type="TailSpin"
-						color="pink"
-						height={100}
-						width={100}
-						timeout={3000} //3 secs
-					/>
-				</div>
+				<LoaderContainer />
 			</div>
 		);
 	}
