@@ -47,7 +47,6 @@ body {
 	display: flex;
 	flex-direction: column;
 
-	// fix row border-top overflowing on iOS.
 }
 
 @media (max-width: 1023px) {

@@ -50,8 +50,8 @@ input:focus {
 
 .submit {
 	-webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
+	   -moz-appearance: none;
+			appearance: none;
 	background-color: lighten($sitepeach, 10%);
 	border-color: darken($sitepeach, 20%);
 	transition: background-color linear $trans-time;

@@ -112,6 +112,9 @@ function App() {
 	// we have a user token? Then we set some variables and start listening to database changes too.
 	const userWhisperer = () => {
 		auth.onAuthStateChanged((user) => {
+			while (loadingUser) {
+				setTimeout(() => {console.log("waiting for user's name to be added to database")}, 200)
+			}
 			if (user) {
 				setUID(user.uid);
 				db.collection("users")
@@ -165,7 +168,7 @@ function App() {
 						setLoadingDB(false);
 					},
 					(err) => {
-						console.log(err.message);
+						console.log(err);
 					}
 				);
 		}
